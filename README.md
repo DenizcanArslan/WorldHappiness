@@ -1,0 +1,1 @@
+This project basically uses react, expressjs and PostgreSQL. it gives you a list based on the 2019 data it gets from the database. In the file named 2019.csv, you can get the  datas and transfer it to your database

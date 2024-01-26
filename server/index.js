@@ -18,7 +18,6 @@ app.get("/countries",async(req,res)=>{
     try {
         const allData=await db.query("SELECT overallrank,country,score,gdppercapita,generosity FROM happinessranks")
         res.json(allData.rows);
-
     } catch (err) {
         console.error(err.message);
     }

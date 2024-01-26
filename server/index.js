@@ -16,7 +16,16 @@ app.use(cors());//middleware for connection between client-server
 app.get("/countries",async(req,res)=>{
     
     try {
-        const allData=await db.query("SELECT overallrank,country,score,gdppercapita,generosity FROM happinessranks")
+
+        let {sortBy,orderBy}=req.query;
+
+         // Default values if not provided by the user
+         sortBy = sortBy || "overallrank";
+         orderBy = orderBy || "ASC";
+
+         const query = `SELECT overallrank, country, score, gdppercapita, generosity FROM happinessranks ORDER BY ${sortBy} ${orderBy}`;
+
+        const allData=await db.query(query);
         res.json(allData.rows);
     } catch (err) {
         console.error(err.message);
@@ -48,4 +57,6 @@ console.log(country)
 
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`);
+
+  
 })

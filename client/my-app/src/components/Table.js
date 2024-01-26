@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Table = ({ country }) => {
   const [data, setData] = useState([]);
   const [initialData, setInitialData] = useState([]);
 
+
+
+// REDUX STATE
+const {sortBy,orderBy}=useSelector((state)=>state.sortType);
+
+
   useEffect(() => {
     getData();
-  }, []);
+  }, [sortBy,orderBy]);
 
   useEffect(() => {
     if (country) {
@@ -22,7 +29,7 @@ const Table = ({ country }) => {
 
   const getData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/countries");
+      const response = await axios.get(`http://localhost:5000/countries?sortBy=${sortBy}&orderBy=${orderBy}`);
       setInitialData(response.data);
       setData(response.data);
     } catch (err) {

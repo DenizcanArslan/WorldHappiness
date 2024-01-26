@@ -24,10 +24,10 @@ const handleCountryChange=(newCountry)=>{
       <SearchBar onCountryChange={handleCountryChange}/>
 
       </div>
-      {/* <div className="col-md-6 my-4 my-md-0">
+       <div className="col-md-6 my-4 my-md-0">
       <DropDown  />
 
-      </div> */}
+      </div> 
     </div>
     <Table  country={selectedCountry} />
     </div>
